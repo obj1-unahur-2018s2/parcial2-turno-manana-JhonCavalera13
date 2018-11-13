@@ -1,0 +1,42 @@
+import mutual.*
+import salidaDetrekKing.*
+import excurcion.*
+import socios.*
+
+
+describe "group of tests" {
+	var roque = new Socios()
+	var ana = new Socios()
+	
+	var playa = new ViajesDePlaya()
+	var playa2 = new ViajesDePlaya()
+	var playa3 = new ViajesDePlaya()
+	var playa4 = new ViajesDePlaya()
+	var claseGym = new ClasesDeGym()	
+	fixture{
+		playa.largo(1000)
+		playa2.largo(2000)
+		
+		roque.agregarActividad(playa)
+		roque.agregarActividad(playa2)
+		roque.maximoActividades(3)
+	
+		
+		ana.agregarActividad(playa3)
+		ana.agregarActividad(playa4)	
+		ana.agregarAtividad(claseGym)
+		ana.maximoActividades(3)
+	
+	}
+	test "roque" {
+
+		assert.that(roque.adoradorDelSol())
+		assert.equals([playa2],roque.actividadesForsozas())
+	}
+	
+	test "Ana"{
+		assert.notThat(ana.adoradorDelSol())
+		assert.equals([playa4,claseGym],ana.actividadesForsozas())
+		//throwsException({foo.dofoo})
+	}
+}

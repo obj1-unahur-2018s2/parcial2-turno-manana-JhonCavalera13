@@ -1,0 +1,77 @@
+import mutual.*
+import salidaDetrekKing.*
+import excurcion.*
+
+describe "group of tests" {
+	var salidaking = new SalidaDeTrekKing()
+	var salida2 = new SalidaDeTrekKing()
+	var ciudad = new ExcursionCiudad()
+	var ciudadTropical = new ExcurcionCiudadTropical()
+	var clase1 = new ClasesDeGym()
+	var clase2 = new ClasesDeGym()
+	
+	
+	fixture {
+		salidaking.diasDeSol(130)
+		salidaking.kmsDeSendero(100)
+		salidaking.agregarIdioma("Castellano")
+		salidaking.agregarIdioma("Portuges")
+		
+		
+		salida2.diasDeSol(240)
+		salida2.kmsDeSendero(50)
+		salida2.agregarIdioma("Ingles")
+		salida2.agregarIdioma("Afrikaans")
+		
+		ciudad.cantidadAtracciones(4)
+		ciudad.agregarIdioma("Quechua")
+		ciudad.agregarIdioma("Ruso")
+		
+		ciudadTropical.cantidadAtracciones(4)
+		ciudadTropical.agregarIdioma("Aleman")
+	}
+	
+	test "salidaDeTrekKing" {
+
+		assert.equals(2,salidaking.dias())
+		assert.that(salidaking.implicaEzfuerzo())
+		assert.notThat(salidaking.broncearse())
+		assert.notThat(salidaking.viajeInteresante())
+		
+		assert.equals(1,salida2.dias())
+		assert.notThat(salida2.implicaEzfuerzo())
+		assert.that(salida2.broncearse())
+		assert.that(salida2.viajeInteresante())
+	}
+	
+	test "Ciudad de excurcion"{
+		assert.equals(2,ciudad.dias())		
+		assert.notThat(ciudad.implicaEzfuerzo())
+		assert.notThat(ciudad.broncearse())
+		assert.that(ciudad.viajeInteresante())
+		
+		assert.equals(3,ciudadTropical.dias())
+		assert.notThat(ciudadTropical.implicaEzfuerzo())
+		assert.that(ciudadTropical.broncearse())
+		assert.notThat(ciudadTropical.viajeInteresante())
+		
+	}
+	
+	test "Clases de gym"{
+		assert.equals(["Español"],clase1.idiomas())
+		assert.equals(1,clase1.dias())
+		assert.that(clase1.implicaEzfuerzo())
+		assert.notThat(clase1.broncearse())
+		
+		assert.equals(["Español"],clase2.idiomas())
+		assert.equals(1,clase2.dias())
+		assert.that(clase2.implicaEzfuerzo())
+		assert.notThat(clase2.broncearse())
+		
+	}
+}
+
+
+
+
+
